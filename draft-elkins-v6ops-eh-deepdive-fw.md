@@ -86,7 +86,64 @@ follow.
    sent as well as how the way the data is sent for testing may impact
    test results.
 
+## Fundamental Premises
 
+   Yet, there are some overriding principles.
+
+   The blockage may be:
+
+   - in the source network
+   - in the destination network
+   - in a transit network
+
+   Then:
+
+   - it may be blocked intentionally
+   - it may be blocked unintentionally
+
+   Intentional blocks are easier to assess.  The block is an
+   administrator or network policy.  Of course, the policy may come
+   about as a result of a misunderstanding of the function of EHs or
+   lack of effective guidance but nonetheless, this is an understandable
+   decision.
+
+   The more troubling causes of EH blocks include:
+
+   - bugs
+   - default configurations or policies by the vendor
+   - lack of support of EH or IPv6 itself
+
+   As far as the blocking component itself (whether intentional or
+   unintentional):
+
+   - may be a router
+   - may be a firewall
+   - may be a load balancer
+   - may be a proxy
+   - may be a Host OS
+   - may be a DNS or other configuration setting
+
+   Note: A DNS or other configuration setting may block IPv6 or prefer
+   IPv4.  If not tested correctly, lack of support for IPv6 itself may
+   incorrectly appear as lack of support for EHs.
+
+   Finally, the blockage or source may differ based on the type of EH.
+   Some EHs are limited to an administrative domain, some EHs are
+   processed at every hop, still others are from the source and
+   destination.  Problem isolation techniques will differ for the
+   various classes of EH.
+
+   Our final document in this series will be a BCP to indicate which EH
+   should be allowed, blocked, encrypted, or authenticated and at which
+   component or platform.
+
+   Note: {{RFC9288}} "Recommendations on the Filtering of IPv6 Packets
+   Containing IPv6 Extension Headers at Transit Routers" focuses on the
+   IPv6 EH handling at transit routers only.  Our approach is to produce
+   a final BCP with various recommendations across network segments,
+   once the nature of the problems and techniques for isolation are well
+   known.
+   
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
