@@ -171,7 +171,7 @@ follow.
    themselves (on-prem), or they could hosted behind a CDN, or
    hosted by the cloud provider.
 
-~~~ Figure
+~~~
                    +--------------------------+
                    |                          |
 +--------+         |                          |     +---------+
@@ -180,25 +180,9 @@ follow.
                    |                          |
                    +--------------------------+
 ~~~
+{: #fig-ex-format title="Owned client / server"}
 
-~~~ Figure
-                   +--------------------------+     +-----------------+
-                   |                          |     |                 |
-+--------+         |                          |     |                 |
-| client |---------|          Internet        |-----| Cloud Network   |
-+--------+         |                          |     | (LB, Firewall,  |
-                   |                          |     | Gateways etc)   |
-                   +--------------------------+     |                 |
-                                                    |                 |
-                                                    |                 |
-                                                    |   +---------+   |
-                                                    |   | Virtual |   |
-                                                    |   | server  |   |
-                                                    |   +---------+   |
-                                                    +-----------------+
 ~~~
-
-~~~ Figure
                                                       +-----------------+
                    +--------------------------+     +-----------------+ |
                    |                          |     | CDN Network     | |
@@ -224,6 +208,27 @@ follow.
 
 (*) - can be over the internet
 ~~~
+{: #fig-ex-format title="Server behind CDN"}
+
+~~~
+                   +--------------------------+     +-----------------+
+                   |                          |     |                 |
++--------+         |                          |     |                 |
+| client |---------|          Internet        |-----| Cloud Network   |
++--------+         |                          |     | (LB, Firewall,  |
+                   |                          |     | Gateways etc)   |
+                   +--------------------------+     |                 |
+                                                    |                 |
+                                                    |                 |
+                                                    |   +---------+   |
+                                                    |   | Virtual |   |
+                                                    |   | server  |   |
+                                                    |   +---------+   |
+                                                    +-----------------+
+~~~
+{: #fig-ex-format title="Cloud-hosted server"}
+
+
 
 # EH Enabled Server / Client / Router
 
