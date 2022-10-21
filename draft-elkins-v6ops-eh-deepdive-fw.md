@@ -144,15 +144,155 @@ follow.
    once the nature of the problems and techniques for isolation are well
    known.
    
-# Conventions and Definitions
+## Diagnostic Methodology Overview
 
-{::boilerplate bcp14-tagged}
+   The diagnostic methodology to follow depends on what is being tested.
+   For example, the problem isolation for a CDN would be different than
+   the problem isolation for an internal network.
 
+   This framework proposes the following set of documents:
 
+   - EH problem isolation for owned client / server
+   - EH problem isolation in a network using a CDN
+   - EH problem isolation in a network using a cloud provider
+   - EH problem isolation for routers
+   - EH problem isolation for load balancers
+   - EH problem isolation for proxies
+   - EH problem isolation for host OSs
+   - EH problem isolation for transit networks
+   - EH problem isolation for ISPs (multiple components / networks)
+   - BCP for EH Permissions, Encryption and Authentication
+
+   
+# EH Enabled Server / Client / Router
+
+   The first step for all testing is to have a test server, client and /
+   or router enabled to send EHs.  There are two basic options to do
+   this, each with its own set of advantages and drawbacks.
+
+   The options fall broadly into two categories:
+
+   - Modifications to the OS / interface / socket / driver to send EHs
+   with application data
+   - Using a package which crafts EHs (multiple exist)
+
+   If crafting packets, then the question arises of which packets to
+   craft.  This will be discussed in section 2.2.
+
+   For either methodology, the rate of sending may influence results.
+   This will be discussed in section 3.
+
+## Modifications to send EHs with application data
+   
+   Possibly the best way to isolate problems with EHs may be to have a
+   server, client or router which has modifications to the OS,
+   interface, driver or other to send real EHs with real application
+   data.  This carries the initial cost of creating such modifications
+   since, unfortunately, the current set of host OSs do not natively
+   support this.
+
+   The reason we find this to be the best method is because the problem
+   of what packet to craft is a field which is rife with land mines.
+   See Section 2.2 for a further discussion of the exact nature of the
+   aforesaid land mines.
+   
+## Crafting packets with EH headers
+
+   A number of packages exist which can craft a packet with an EH
+   header.  The more interesting and fraught problem may be which exact
+   packet to craft and then which EH to craft.
+
+   Let's discuss first the options for the type of packet to craft.
+   These include:
+
+   - A TCP packet
+   - A UDP packet
+   - An ICMPv6 packet
+   - A QUIC packet
+   
+   If crafting a TCP packet, then it is likely that some middlebox will
+   drop a TCP packet which does not have the appropriate ACK and
+   SEQUENCE numbers.  One may get around this problem by sending a
+   packet with the SYN flag on and directed to some well-known port such
+   as 443 or 80.  But, if many firewalls and other devices such as IDS /
+   IPS, and even some OSs have SYN Flood protection.  So, if more than a
+   certain number of these packets, say 10, in some short interval are
+   sent, then they are likely to be dropped for reasons other than
+   blockage of EH headers.
+
+   One may choose to use UDP, QUIC, or ICMPv6 to attempt to bypass the
+   complexities of TCP.  Some enterprise networks are likely to drop UDP
+   and / or QUIC.  Testing should be done without EH to make sure that
+   such packets do indeed pass.
+
+   Certainly, if you have access to all the middleboxes in your domain,
+   you may be able to bypass or stop SYN Flood, UDP, ICMPv6 or other
+   transport layer blocks at all the middleboxes.  But, it may be a more
+   difficult effort than might be imagined.
+
+   You may wish to test in a lab environment first to validate your
+   approach.
+   
+## How to Add EH
+
+   There are two ways to add an EH to a packet:
+
+   - use a "real" EH
+   - craft an EH
+
+   The best method may be to use an EH which is actually processed at
+   the client, server, and any associated router.  This leaves us with a
+   sparse set to choose from.  The problem with crafting an EH is that
+   if the data is not "real", one may not be able to fault a network
+   component for blocking it.
+
+   Having said that, let's discuss crafting an EH.  An EH may be crafted
+   by simply using multiple PADN options.  One should be careful not to
+   use too many PADNs because then this type of header may be dropped by
+   a middlebox or OS as being a flawed packet.  This is likely to
+   distort the results.
+
+   An EH with all 0's or other data patterns that could be perceived as
+   not "real" may also be dropped by middleboxes which are trying to be
+   helpful.
+   
+   It is also possible that the length of the EH may have some effect on
+   what EHs get dropped and where.
+
+   You may wish to try this in a lab environment first.  If the test
+   suceeds, then you may test on your network.
+   
+## Which EH to Use
+
+   Next, there is a consideration that the type of EH, for example,
+   Destination Options, Hop-by-hop, etc. could get processed differently
+   and may be dropped at different frequencies, by different devices.
+   You may wish to test one at a time and note the results.
+
+   You may wish to try this in a lab environment first.  If the test
+   suceeds, then you may test on your network.
+   
+# Rate of sending and sampling
+
+   Whether you have chosen to send real application data or to craft
+   packets, the rate of sending and sampling may create a false
+   indication of blockage.  That is, if you send a great deal of data at
+   frequent intervals, some middlebox in the network is likely to see
+   this traffic as a Denial of Service (DoS) attack and block it.  This
+   is more likely if a great many crafted packets are sent but even with
+   real application data such as FTP or HTTP, overly aggressive sending
+   is likely to be counterproductive.
+
+   You may wish to send only a few packets or one or two CURL or FTPs at
+   any one test.
+   
 # Security Considerations
 
-TODO Security
+This document has no security considerations.
 
+# Privacy Considerations
+
+This document has no privacy considerations.
 
 # IANA Considerations
 
@@ -165,3 +305,9 @@ This document has no IANA actions.
 {:numbered="false"}
 
 TODO acknowledge.
+
+
+# Contributors
+{:numbered="false"}
+
+TODO contributors.
