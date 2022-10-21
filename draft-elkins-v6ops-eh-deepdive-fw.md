@@ -34,6 +34,10 @@ author:
     organization: India Internet Engineering Society
     country: IN
     email: dhruv.ietf@gmail.com
+normative:
+ RFC8200
+informative:
+ RFC9288
 --- abstract
 
 IPv6 Extension Header testing is a complex area.  Studies have shown
@@ -49,7 +53,7 @@ follow.
 
 ## Problem Description
 
-   IPv6 Extension Headers (EHs) may be blocked at various points yet
+   IPv6 {{RFC8200}} Extension Headers (EHs) may be blocked at various points yet
    show the same symptom.  That is, if an EH is blocked at a router, it
    will appear to the client or measurement technique that the packet is
    dropped.  If an EH is blocked at a load balancer or CDN, the client
@@ -137,7 +141,7 @@ follow.
    should be allowed, blocked, encrypted, or authenticated and at which
    component or platform.
 
-   Note: {{?RFC9288}} "Recommendations on the Filtering of IPv6 Packets
+   Note: {{RFC9288}} "Recommendations on the Filtering of IPv6 Packets
    Containing IPv6 Extension Headers at Transit Routers" focuses on the
    IPv6 EH handling at transit routers only.  Our approach is to produce
    a final BCP with various recommendations across network segments,
