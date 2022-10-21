@@ -1,24 +1,4 @@
 ---
-###
-# Internet-Draft Markdown Template
-#
-# Rename this file from draft-todo-yourname-protocol.md to get started.
-# Draft name format is "draft-<yourname>-<workgroup>-<name>.md".
-#
-# For initial setup, you only need to edit the first block of fields.
-# Only "title" needs to be changed; delete "abbrev" if your title is short.
-# Any other content can be edited, but be careful not to introduce errors.
-# Some fields will be set automatically during setup if they are unchanged.
-#
-# Don't include "-00" or "-latest" in the filename.
-# Labels in the form draft-<yourname>-<workgroup>-<name>-latest are used by
-# the tools to refer to the current version; see "docname" for example.
-#
-# This template uses kramdown-rfc: https://github.com/cabo/kramdown-rfc
-# You can replace the entire file if you prefer a different format.
-# Change the file extension to match the format (.xml for XML, etc...)
-#
-###
 title: "Deep Dive into IPv6 Extension Header Testing"
 abbrev: "Deep Dive IPv6 EH"
 category: bcp
@@ -36,12 +16,14 @@ author:
  -
     fullname: Nalini Elkins
     organization: Industry Network Technology Council
+    abbrev: INT Council
     country: US
     phone: +1 831 234 4232
     email: nalini.elkins@insidethestack.com
  -
     fullname: Michael Ackermann
     organization: Industry Network Technology Council
+    abbrev: INT Council
     country: US
     phone: +1 248 703 3600
     email: mackermann@bcbsm.com
@@ -65,7 +47,44 @@ follow.
 
 # Introduction
 
-TODO Introduction
+## Problem Description
+
+   IPv6 Extension Headers (EHs) may be blocked at various points yet
+   show the same symptom.  That is, if an EH is blocked at a router, it
+   will appear to the client or measurement technique that the packet is
+   dropped.  If an EH is blocked at a load balancer or CDN, the client
+   will see the same symptom -- the packet is dropped.
+
+   This is a problem because when the same symptom can be the due to
+   multiple factors, incorrect conclusions may be drawn from the
+   results.  That is, if, for example, loss of the sense of taste of
+   sweetness can be due either to a brain tumor or a minor neurological
+   problem, then if someone has a tendency towards hypochondria, they
+   may incorrectly bemoan their impending death from a brain tumor when
+   it may really be only a minor issue.
+
+   This is the same for EH testing.  If a packet is seen to be dropped
+   in measurement, it may only be that there is a bug in the load
+   balancer code (for example) and not that EH transmission does not
+   work writ large.
+
+   This document proposes a framework to isolate the problem of where
+   the packet is being dropped.  This is, however, more easily said than
+   done.  There are many components and devices in a network.  Each may
+   require a different isolation technique.
+
+   We propose a methdology which starts with the simplest topology and
+   grows towards more and more complex, real-world networks.  For
+   example, in today's networks, if one attempts to access a well-known
+   site such as Facebook.com, one is likely to access a cache server
+   managed by a Content Delivery Network (CDN) rather than the origin
+   server managed by Facebook.  It is important to isolate the testing
+   so that we can determine the exact component which may be blocking
+   the EH and why.
+
+   We additionally discuss the potential issues with the type of data
+   sent as well as how the way the data is sent for testing may impact
+   test results.
 
 
 # Conventions and Definitions
