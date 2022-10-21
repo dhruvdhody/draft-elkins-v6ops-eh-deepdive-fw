@@ -142,8 +142,8 @@ follow.
    IPv6 EH handling at transit routers only.  Our approach is to produce
    a final BCP with various recommendations across network segments,
    once the nature of the problems and techniques for isolation are well
-   known.
-   
+   known.   
+
 ## Diagnostic Methodology Overview
 
    The diagnostic methodology to follow depends on what is being tested.
@@ -162,8 +162,7 @@ follow.
    - EH problem isolation for transit networks
    - EH problem isolation for ISPs (multiple components / networks)
    - BCP for EH Permissions, Encryption and Authentication
-
-   
+ 
 # EH Enabled Server / Client / Router
 
    The first step for all testing is to have a test server, client and /
@@ -183,8 +182,8 @@ follow.
    This will be discussed in {{rate}}.
 
 ## Modifications to send EHs with application data
-   
-   Possibly the best way to isolate problems with EHs may be to have a
+
+Possibly the best way to isolate problems with EHs may be to have a
    server, client or router which has modifications to the OS,
    interface, driver or other to send real EHs with real application
    data.  This carries the initial cost of creating such modifications
@@ -209,8 +208,8 @@ follow.
    - A UDP packet
    - An ICMPv6 packet
    - A QUIC packet
-   
-   If crafting a TCP packet, then it is likely that some middlebox will
+
+If crafting a TCP packet, then it is likely that some middlebox will
    drop a TCP packet which does not have the appropriate ACK and
    SEQUENCE numbers.  One may get around this problem by sending a
    packet with the SYN flag on and directed to some well-known port such
@@ -232,7 +231,6 @@ follow.
 
    You may wish to test in a lab environment first to validate your
    approach.
-   
 ## How to Add EH
 
    There are two ways to add an EH to a packet:
@@ -260,8 +258,7 @@ follow.
    what EHs get dropped and where.
 
    You may wish to try this in a lab environment first.  If the test
-   suceeds, then you may test on your network.
-   
+   suceeds, then you may test on your network. 
 ## Which EH to Use
 
    Next, there is a consideration that the type of EH, for example,
@@ -271,7 +268,6 @@ follow.
 
    You may wish to try this in a lab environment first.  If the test
    suceeds, then you may test on your network.
-   
 # Rate of sending and sampling {#rate}
 
    Whether you have chosen to send real application data or to craft
@@ -285,7 +281,6 @@ follow.
 
    You may wish to send only a few packets or one or two CURL or FTPs at
    any one test.
-   
 # Security Considerations
 
 This document has no security considerations.
