@@ -35,9 +35,9 @@ author:
     country: IN
     email: dhruv.ietf@gmail.com
 normative:
- RFC8200
+ RFC8200:
 informative:
- RFC9288
+ RFC9288:
 --- abstract
 
 IPv6 Extension Header testing is a complex area.  Studies have shown
