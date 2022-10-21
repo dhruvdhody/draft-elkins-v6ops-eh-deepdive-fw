@@ -11,7 +11,8 @@ area: "OPS"
 workgroup: v6ops WG
 keyword:
  - EH
-
+stand_alone: yes
+pi: [toc, sortrefs, symrefs, docmapping]
 author:
  -
     fullname: Nalini Elkins
