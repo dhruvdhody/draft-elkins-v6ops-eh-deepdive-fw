@@ -177,10 +177,10 @@ follow.
    - Using a package which crafts EHs (multiple exist)
 
    If crafting packets, then the question arises of which packets to
-   craft.  This will be discussed in section 2.2.
+   craft.  This will be discussed in {{craft}}.
 
    For either methodology, the rate of sending may influence results.
-   This will be discussed in section 3.
+   This will be discussed in {{rate}}.
 
 ## Modifications to send EHs with application data
    
@@ -193,10 +193,10 @@ follow.
 
    The reason we find this to be the best method is because the problem
    of what packet to craft is a field which is rife with land mines.
-   See Section 2.2 for a further discussion of the exact nature of the
+   See {{craft}} for a further discussion of the exact nature of the
    aforesaid land mines.
    
-## Crafting packets with EH headers
+## Crafting packets with EH headers {#craft}
 
    A number of packages exist which can craft a packet with an EH
    header.  The more interesting and fraught problem may be which exact
@@ -272,7 +272,7 @@ follow.
    You may wish to try this in a lab environment first.  If the test
    suceeds, then you may test on your network.
    
-# Rate of sending and sampling
+# Rate of sending and sampling {#rate}
 
    Whether you have chosen to send real application data or to craft
    packets, the rate of sending and sampling may create a false
