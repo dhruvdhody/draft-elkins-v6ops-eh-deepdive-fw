@@ -253,7 +253,7 @@ Possibly the best way to isolate problems with EHs may be to have a
    aforesaid land mines.
 ## Crafting packets with EH headers {#seccraft}
 
-   A number of packages exist which can craft a packet with an EH
+A number of packages exist which can craft a packet with an EH
    header.  The more interesting and fraught problem may be which exact
    packet to craft and then which EH to craft.
 
