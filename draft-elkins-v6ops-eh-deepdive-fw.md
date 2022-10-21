@@ -33,7 +33,6 @@ author:
     organization: India Internet Engineering Society
     country: IN
     email: dhruv.ietf@gmail.com
- 
 --- abstract
 
 IPv6 Extension Header testing is a complex area.  Studies have shown
@@ -142,8 +141,7 @@ follow.
    IPv6 EH handling at transit routers only.  Our approach is to produce
    a final BCP with various recommendations across network segments,
    once the nature of the problems and techniques for isolation are well
-   known.   
-
+   known.
 ## Diagnostic Methodology Overview
 
    The diagnostic methodology to follow depends on what is being tested.
@@ -162,7 +160,6 @@ follow.
    - EH problem isolation for transit networks
    - EH problem isolation for ISPs (multiple components / networks)
    - BCP for EH Permissions, Encryption and Authentication
- 
 # EH Enabled Server / Client / Router
 
    The first step for all testing is to have a test server, client and /
@@ -194,7 +191,6 @@ Possibly the best way to isolate problems with EHs may be to have a
    of what packet to craft is a field which is rife with land mines.
    See {{craft}} for a further discussion of the exact nature of the
    aforesaid land mines.
-   
 ## Crafting packets with EH headers {#craft}
 
    A number of packages exist which can craft a packet with an EH
@@ -253,7 +249,7 @@ If crafting a TCP packet, then it is likely that some middlebox will
    An EH with all 0's or other data patterns that could be perceived as
    not "real" may also be dropped by middleboxes which are trying to be
    helpful.
-   
+
    It is also possible that the length of the EH may have some effect on
    what EHs get dropped and where.
 
@@ -268,6 +264,7 @@ If crafting a TCP packet, then it is likely that some middlebox will
 
    You may wish to try this in a lab environment first.  If the test
    suceeds, then you may test on your network.
+
 # Rate of sending and sampling {#rate}
 
    Whether you have chosen to send real application data or to craft
