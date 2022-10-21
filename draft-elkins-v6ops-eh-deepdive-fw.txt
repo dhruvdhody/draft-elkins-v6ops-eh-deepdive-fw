@@ -223,8 +223,8 @@ Table of Contents
    *  BCP for EH Permissions, Encryption and Authentication
 
    Note that the server can be owned and operated by the administrator
-   themselves (on-prem), or they could hosted behind a CDN, or hosted by
-   the cloud provider.
+   themselves (on-prem) Figure 1, or they could hosted behind a CDN
+   Figure 2, or hosted by the cloud provider Figure 3.
 
                       +--------------------------+
                       |                          |
@@ -234,45 +234,51 @@ Table of Contents
                       |                          |
                       +--------------------------+
 
-                      +--------------------------+     +-----------------+
-                      |                          |     |                 |
-   +--------+         |                          |     |                 |
-   | client |---------|          Internet        |-----| Cloud Network   |
-   +--------+         |                          |     | (LB, Firewall,  |
-                      |                          |     | Gateways etc)   |
-                      +--------------------------+     |                 |
-                                                       |                 |
-                                                       |                 |
-                                                       |   +---------+   |
-                                                       |   | Virtual |   |
-                                                       |   | server  |   |
-                                                       |   +---------+   |
-                                                       +-----------------+
+                      Figure 1: Owned client / server
 
-                                                         +-----------------+
-                      +--------------------------+     +-----------------+ |
-                      |                          |     | CDN Network     | |
-   +--------+         |                          |     | +---------+     | |
-   | client |---------|        Internet          |-----| | Edge    |     | |
-   +--------+         |                          |     | | Server  |     | |
-                      |                          |     | +---------+     | |
-                      +--------------------------+     |                 | |
-                                                       | (LB, Firewall   | |
-                                                       |  Cache etc)     | |
-                                                       |                 | |
-                                                       |                 | |
-                                                       |                 | |
-                                                       |                 |-+
-                                                       +-----------------+
-                                                               |
-                                                               | (*)
-                                                               |
-                                                          +---------+
-                                                          | Origin  |
-                                                          | server  |
-                                                          +---------+
+                                                      +-----------------+
+                   +--------------------------+     +-----------------+ |
+                   |                          |     | CDN Network     | |
++--------+         |                          |     | +---------+     | |
+| client |---------|        Internet          |-----| | Edge    |     | |
++--------+         |                          |     | | Server  |     | |
+                   |                          |     | +---------+     | |
+                   +--------------------------+     |                 | |
+                                                    | (LB, Firewall   | |
+                                                    |  Cache etc)     | |
+                                                    |                 | |
+                                                    |                 | |
+                                                    |                 | |
+                                                    |                 |-+
+                                                    +-----------------+
+                                                            |
+                                                            | (*)
+                                                            |
+                                                       +---------+
+                                                       | Origin  |
+                                                       | server  |
+                                                       +---------+
 
-   (*) - can be over the internet
+(*) - can be over the internet
+
+                     Figure 2: Server behind CDN
+
+                    +--------------------------+     +-----------------+
+                    |                          |     |                 |
+ +--------+         |                          |     |                 |
+ | client |---------|          Internet        |-----| Cloud Network   |
+ +--------+         |                          |     | (LB, Firewall,  |
+                    |                          |     | Gateways etc)   |
+                    +--------------------------+     |                 |
+                                                     |                 |
+                                                     |                 |
+                                                     |   +---------+   |
+                                                     |   | Virtual |   |
+                                                     |   | server  |   |
+                                                     |   +---------+   |
+                                                     +-----------------+
+
+                     Figure 3: Cloud-hosted server
 
 2.  EH Enabled Server / Client / Router
 

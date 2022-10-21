@@ -1362,10 +1362,12 @@ follow.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-1.3-4">Note that the server can be owned and operated by the administrator
-   themselves (on-prem), or they could hosted behind a CDN, or
-   hosted by the cloud provider.<a href="#section-1.3-4" class="pilcrow">¶</a></p>
-<div id="section-1.3-5">
-<pre class="lang-Figure sourcecode">
+   themselves (on-prem) <a href="#fig-serv" class="auto internal xref">Figure 1</a>, or they could hosted behind a CDN <a href="#fig-cdn" class="auto internal xref">Figure 2</a>, or
+   hosted by the cloud provider <a href="#fig-cloud" class="auto internal xref">Figure 3</a>.<a href="#section-1.3-4" class="pilcrow">¶</a></p>
+<span id="name-owned-client-server"></span><div id="fig-serv">
+<figure id="figure-1">
+          <div class="alignLeft art-text artwork" id="section-1.3-5.1">
+<pre>
                    +--------------------------+
                    |                          |
 +--------+         |                          |     +---------+
@@ -1373,28 +1375,16 @@ follow.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 +--------+         |                          |     +---------+
                    |                          |
                    +--------------------------+
-</pre><a href="#section-1.3-5" class="pilcrow">¶</a>
+</pre>
 </div>
-<div id="section-1.3-6">
-<pre class="lang-Figure sourcecode">
-                   +--------------------------+     +-----------------+
-                   |                          |     |                 |
-+--------+         |                          |     |                 |
-| client |---------|          Internet        |-----| Cloud Network   |
-+--------+         |                          |     | (LB, Firewall,  |
-                   |                          |     | Gateways etc)   |
-                   +--------------------------+     |                 |
-                                                    |                 |
-                                                    |                 |
-                                                    |   +---------+   |
-                                                    |   | Virtual |   |
-                                                    |   | server  |   |
-                                                    |   +---------+   |
-                                                    +-----------------+
-</pre><a href="#section-1.3-6" class="pilcrow">¶</a>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-owned-client-server" class="selfRef">Owned client / server</a>
+          </figcaption></figure>
 </div>
-<div id="section-1.3-7">
-<pre class="lang-Figure sourcecode">
+<span id="name-server-behind-cdn"></span><div id="fig-cdn">
+<figure id="figure-2">
+          <div class="alignLeft art-text artwork" id="section-1.3-6.1">
+<pre>
                                                       +-----------------+
                    +--------------------------+     +-----------------+ |
                    |                          |     | CDN Network     | |
@@ -1419,7 +1409,35 @@ follow.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
                                                        +---------+
 
 (*) - can be over the internet
-</pre><a href="#section-1.3-7" class="pilcrow">¶</a>
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-server-behind-cdn" class="selfRef">Server behind CDN</a>
+          </figcaption></figure>
+</div>
+<span id="name-cloud-hosted-server"></span><div id="fig-cloud">
+<figure id="figure-3">
+          <div class="alignLeft art-text artwork" id="section-1.3-7.1">
+<pre>
+                   +--------------------------+     +-----------------+
+                   |                          |     |                 |
++--------+         |                          |     |                 |
+| client |---------|          Internet        |-----| Cloud Network   |
++--------+         |                          |     | (LB, Firewall,  |
+                   |                          |     | Gateways etc)   |
+                   +--------------------------+     |                 |
+                                                    |                 |
+                                                    |                 |
+                                                    |   +---------+   |
+                                                    |   | Virtual |   |
+                                                    |   | server  |   |
+                                                    |   +---------+   |
+                                                    +-----------------+
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-cloud-hosted-server" class="selfRef">Cloud-hosted server</a>
+          </figcaption></figure>
 </div>
 </section>
 </div>
