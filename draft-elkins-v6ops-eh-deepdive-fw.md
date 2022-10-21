@@ -4,7 +4,7 @@ abbrev: "Deep Dive IPv6 EH"
 category: bcp
 
 docname: draft-elkins-v6ops-eh-deepdive-fw-latest
-submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
+submissiontype: IETF
 consensus: true
 v: 3
 area: "OPS"
@@ -160,6 +160,61 @@ follow.
    - EH problem isolation for transit networks
    - EH problem isolation for ISPs (multiple components / networks)
    - BCP for EH Permissions, Encryption and Authentication
+
+   Note that the server can be owned and operated by the administrator
+   themselves (on-prem), or they could hosted behind a CDN, or
+   hosted by the cloud provider.
+~~~Figure
+                   +--------------------------+
+                   |                          |
++--------+         |                          |     +---------+
+| client |---------|          Internet        |-----| server  |
++--------+         |                          |     +---------+
+                   |                          |
+                   +--------------------------+
+~~~
+~~~Figure
+                   +--------------------------+     +-----------------+
+                   |                          |     |                 |
++--------+         |                          |     |                 |
+| client |---------|          Internet        |-----| Cloud Network   |
++--------+         |                          |     | (LB, Firewall,  |
+                   |                          |     | Gateways etc)   |
+                   +--------------------------+     |                 |
+                                                    |                 |
+                                                    |                 |
+                                                    |   +---------+   |
+                                                    |   | Virtual |   |
+                                                    |   | server  |   |
+                                                    |   +---------+   |
+                                                    +-----------------+
+~~~
+~~~Figure
+                                                      +-----------------+
+                   +--------------------------+     +-----------------+ |
+                   |                          |     | CDN Network     | |
++--------+         |                          |     | +---------+     | |
+| client |---------|        Internet          |-----| | Edge    |     | |
++--------+         |                          |     | | Server  |     | |
+                   |                          |     | +---------+     | |
+                   +--------------------------+     |                 | |
+                                                    | (LB, Firewall   | |
+                                                    |  Cache etc)     | |
+                                                    |                 | |
+                                                    |                 | |
+                                                    |                 | |
+                                                    |                 |-+
+                                                    +-----------------+
+                                                            |
+                                                            | (*)
+                                                            |
+                                                       +---------+
+                                                       | Origin  |
+                                                       | server  |
+                                                       +---------+
+
+(*) - can be over the internet
+~~~
 # EH Enabled Server / Client / Router
 
    The first step for all testing is to have a test server, client and /
