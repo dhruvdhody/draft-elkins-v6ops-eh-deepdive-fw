@@ -147,6 +147,7 @@ follow.
    a final BCP with various recommendations across network segments,
    once the nature of the problems and techniques for isolation are well
    known.
+
 ## Diagnostic Methodology Overview
 
    The diagnostic methodology to follow depends on what is being tested.
@@ -169,7 +170,8 @@ follow.
    Note that the server can be owned and operated by the administrator
    themselves (on-prem), or they could hosted behind a CDN, or
    hosted by the cloud provider.
-~~~Figure
+
+~~~ Figure
                    +--------------------------+
                    |                          |
 +--------+         |                          |     +---------+
@@ -178,7 +180,8 @@ follow.
                    |                          |
                    +--------------------------+
 ~~~
-~~~Figure
+
+~~~ Figure
                    +--------------------------+     +-----------------+
                    |                          |     |                 |
 +--------+         |                          |     |                 |
@@ -194,7 +197,8 @@ follow.
                                                     |   +---------+   |
                                                     +-----------------+
 ~~~
-~~~Figure
+
+~~~ Figure
                                                       +-----------------+
                    +--------------------------+     +-----------------+ |
                    |                          |     | CDN Network     | |
@@ -220,6 +224,7 @@ follow.
 
 (*) - can be over the internet
 ~~~
+
 # EH Enabled Server / Client / Router
 
    The first step for all testing is to have a test server, client and /
@@ -288,6 +293,7 @@ If crafting a TCP packet, then it is likely that some middlebox will
 
    You may wish to test in a lab environment first to validate your
    approach.
+
 ## How to Add EH
 
    There are two ways to add an EH to a packet:
@@ -316,6 +322,7 @@ If crafting a TCP packet, then it is likely that some middlebox will
 
    You may wish to try this in a lab environment first.  If the test
    suceeds, then you may test on your network.
+
 ## Which EH to Use
 
    Next, there is a consideration that the type of EH, for example,
@@ -339,6 +346,7 @@ If crafting a TCP packet, then it is likely that some middlebox will
 
    You may wish to send only a few packets or one or two CURL or FTPs at
    any one test.
+
 # Security Considerations
 
 This document has no security considerations.
