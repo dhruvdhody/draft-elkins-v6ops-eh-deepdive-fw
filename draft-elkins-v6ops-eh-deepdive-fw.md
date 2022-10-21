@@ -137,7 +137,7 @@ follow.
    should be allowed, blocked, encrypted, or authenticated and at which
    component or platform.
 
-   Note: {{RFC9288}} "Recommendations on the Filtering of IPv6 Packets
+   Note: {{?RFC9288}} "Recommendations on the Filtering of IPv6 Packets
    Containing IPv6 Extension Headers at Transit Routers" focuses on the
    IPv6 EH handling at transit routers only.  Our approach is to produce
    a final BCP with various recommendations across network segments,
