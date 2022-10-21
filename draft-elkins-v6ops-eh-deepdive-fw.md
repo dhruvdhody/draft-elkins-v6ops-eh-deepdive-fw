@@ -19,44 +19,46 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
-category: info
+title: "Deep Dive into IPv6 Extension Header Testing"
+abbrev: "Deep Dive IPv6 EH"
+category: bcp
 
-docname: draft-todo-yourname-protocol-latest
+docname: draft-elkins-v6ops-eh-deepdive-fw-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
-number:
-date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "OPS"
+workgroup: v6ops WG
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
-venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+ - EH
 
 author:
  -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: your.email@example.com
-
-normative:
-
-informative:
-
-
+    fullname: Nalini Elkins
+    organization: Industry Network Technology Council
+    country: US
+    phone: +1 831 234 4232
+    email: nalini.elkins@insidethestack.com
+ -
+    fullname: Michael Ackermann
+    organization: Industry Network Technology Council
+    country: US
+    phone: +1 248 703 3600
+    email: mackermann@bcbsm.com
+    uri: https://www.bcbsm.com
+ -
+    fullname: Dhruv Dhody
+    organization: India Internet Engineering Society
+    country: IN
+    email: dhruv.ietf@gmail.com
+ 
 --- abstract
 
-TODO Abstract
+IPv6 Extension Header testing is a complex area.  Studies have shown
+varying results.  This document proposes a methodology for isolating
+the location and reasons for IPv6 Extension Headers blockage.  This
+document outlines the basic framework and set of documents which will
+follow.
 
 
 --- middle
