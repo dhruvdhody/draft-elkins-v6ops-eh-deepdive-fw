@@ -7,8 +7,8 @@ docname: draft-elkins-v6ops-eh-deepdive-fw-latest
 submissiontype: IETF
 consensus: true
 v: 3
-area: "OPS"
-workgroup: v6ops WG
+area: "Operations and Management"
+workgroup: "IPv6 Operations"
 keyword:
  - EH
 stand_alone: yes
