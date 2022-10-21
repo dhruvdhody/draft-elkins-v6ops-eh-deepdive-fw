@@ -168,8 +168,8 @@ follow.
    - BCP for EH Permissions, Encryption and Authentication
 
    Note that the server can be owned and operated by the administrator
-   themselves (on-prem), or they could hosted behind a CDN, or
-   hosted by the cloud provider.
+   themselves (on-prem) {{fig-serv}}, or they could hosted behind a CDN {{fig-cdn}}, or
+   hosted by the cloud provider {{fig-cloud}}.
 
 ~~~
                    +--------------------------+
@@ -180,7 +180,7 @@ follow.
                    |                          |
                    +--------------------------+
 ~~~
-{: #fig-ex-format title="Owned client / server"}
+{: #fig-serv title="Owned client / server"}
 
 ~~~
                                                       +-----------------+
@@ -208,7 +208,7 @@ follow.
 
 (*) - can be over the internet
 ~~~
-{: #fig-ex-format title="Server behind CDN"}
+{: #fig-cdn title="Server behind CDN"}
 
 ~~~
                    +--------------------------+     +-----------------+
@@ -226,7 +226,7 @@ follow.
                                                     |   +---------+   |
                                                     +-----------------+
 ~~~
-{: #fig-ex-format title="Cloud-hosted server"}
+{: #fig-cloud title="Cloud-hosted server"}
 
 
 
