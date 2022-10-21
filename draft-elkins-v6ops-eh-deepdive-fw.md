@@ -254,7 +254,7 @@ If crafting a TCP packet, then it is likely that some middlebox will
    what EHs get dropped and where.
 
    You may wish to try this in a lab environment first.  If the test
-   suceeds, then you may test on your network. 
+   suceeds, then you may test on your network.
 ## Which EH to Use
 
    Next, there is a consideration that the type of EH, for example,
