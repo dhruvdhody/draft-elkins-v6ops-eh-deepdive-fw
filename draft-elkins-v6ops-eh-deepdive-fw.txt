@@ -68,14 +68,19 @@ Table of Contents
    1.  Introduction
      1.1.  Problem Description
      1.2.  Fundamental Premises
-     1.3.  Modifications to send EHs with application data
-     1.4.  Crafting packets with EH headers
-   2.  Rate of sending and sampling
-   3.  Privacy Considerations
-   4.  IANA Considerations
-   5.  References
-     5.1.  Normative References
-     5.2.  Informative References
+     1.3.  Diagnostic Methodology Overview
+   2.  EH Enabled Server / Client / Router
+     2.1.  Modifications to send EHs with application data
+     2.2.  Crafting packets with EH headers
+     2.3.  How to Add EH
+     2.4.  Which EH to Use
+   3.  Rate of sending and sampling
+   4.  Security Considerations
+   5.  Privacy Considerations
+   6.  IANA Considerations
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -187,7 +192,9 @@ Table of Contents
    IPv6 EH handling at transit routers only.  Our approach is to produce
    a final BCP with various recommendations across network segments,
    once the nature of the problems and techniques for isolation are well
-   known. ## Diagnostic Methodology Overview
+   known.
+
+1.3.  Diagnostic Methodology Overview
 
    The diagnostic methodology to follow depends on what is being tested.
    For example, the problem isolation for a CDN would be different than
@@ -217,25 +224,57 @@ Table of Contents
 
    Note that the server can be owned and operated by the administrator
    themselves (on-prem), or they could hosted behind a CDN, or hosted by
-   the cloud provider. ~~~Figure +--------------------------+ | |
-   +--------+ | | +---------+ | client |---------| Internet |-----|
-   server | +--------+ | | +---------+ | | +--------------------------+
-   ~~~ ~~~Figure +--------------------------+
-   +-----------------+ | | | | +--------+ | | | | | client |---------|
-   Internet |-----| Cloud Network | +--------+ | | | (LB,
-   Firewall, | | | | Gateways etc) |
-   +--------------------------+ | | | | | | | +---------+ | | |
-   Virtual | | | | server | | | +---------+ | +-----------------+ ~~~
-   ~~~Figure +-----------------+ +--------------------------+
-   +-----------------+ | | | | CDN Network | | +--------+ | | |
-   +---------+ | | | client |---------| Internet |-----| | Edge | | |
-   +--------+ | | | | Server | | | | | | +---------+ | |
-   +--------------------------+ | | | | (LB, Firewall | | | Cache
-   etc) | | | | | | | | | | | | |-+ +-----------------+ | | (*) |
-   +---------+ | Origin | | server | +---------+
+   the cloud provider.
 
-   (*) - can be over the internet ~~~ # EH Enabled Server / Client /
-   Router
+                      +--------------------------+
+                      |                          |
+   +--------+         |                          |     +---------+
+   | client |---------|          Internet        |-----| server  |
+   +--------+         |                          |     +---------+
+                      |                          |
+                      +--------------------------+
+
+                      +--------------------------+     +-----------------+
+                      |                          |     |                 |
+   +--------+         |                          |     |                 |
+   | client |---------|          Internet        |-----| Cloud Network   |
+   +--------+         |                          |     | (LB, Firewall,  |
+                      |                          |     | Gateways etc)   |
+                      +--------------------------+     |                 |
+                                                       |                 |
+                                                       |                 |
+                                                       |   +---------+   |
+                                                       |   | Virtual |   |
+                                                       |   | server  |   |
+                                                       |   +---------+   |
+                                                       +-----------------+
+
+                                                         +-----------------+
+                      +--------------------------+     +-----------------+ |
+                      |                          |     | CDN Network     | |
+   +--------+         |                          |     | +---------+     | |
+   | client |---------|        Internet          |-----| | Edge    |     | |
+   +--------+         |                          |     | | Server  |     | |
+                      |                          |     | +---------+     | |
+                      +--------------------------+     |                 | |
+                                                       | (LB, Firewall   | |
+                                                       |  Cache etc)     | |
+                                                       |                 | |
+                                                       |                 | |
+                                                       |                 | |
+                                                       |                 |-+
+                                                       +-----------------+
+                                                               |
+                                                               | (*)
+                                                               |
+                                                          +---------+
+                                                          | Origin  |
+                                                          | server  |
+                                                          +---------+
+
+   (*) - can be over the internet
+
+2.  EH Enabled Server / Client / Router
 
    The first step for all testing is to have a test server, client and /
    or router enabled to send EHs.  There are two basic options to do
@@ -249,12 +288,12 @@ Table of Contents
    *  Using a package which crafts EHs (multiple exist)
 
    If crafting packets, then the question arises of which packets to
-   craft.  This will be discussed in Section 1.4.
+   craft.  This will be discussed in Section 2.2.
 
    For either methodology, the rate of sending may influence results.
-   This will be discussed in Section 2.
+   This will be discussed in Section 3.
 
-1.3.  Modifications to send EHs with application data
+2.1.  Modifications to send EHs with application data
 
    Possibly the best way to isolate problems with EHs may be to have a
    server, client or router which has modifications to the OS,
@@ -265,10 +304,10 @@ Table of Contents
 
    The reason we find this to be the best method is because the problem
    of what packet to craft is a field which is rife with land mines.
-   See Section 1.4 for a further discussion of the exact nature of the
+   See Section 2.2 for a further discussion of the exact nature of the
    aforesaid land mines.
 
-1.4.  Crafting packets with EH headers
+2.2.  Crafting packets with EH headers
 
    A number of packages exist which can craft a packet with an EH
    header.  The more interesting and fraught problem may be which exact
@@ -306,7 +345,9 @@ Table of Contents
    difficult effort than might be imagined.
 
    You may wish to test in a lab environment first to validate your
-   approach. ## How to Add EH
+   approach.
+
+2.3.  How to Add EH
 
    There are two ways to add an EH to a packet:
 
@@ -334,7 +375,9 @@ Table of Contents
    what EHs get dropped and where.
 
    You may wish to try this in a lab environment first.  If the test
-   suceeds, then you may test on your network. ## Which EH to Use
+   suceeds, then you may test on your network.
+
+2.4.  Which EH to Use
 
    Next, there is a consideration that the type of EH, for example,
    Destination Options, Hop-by-hop, etc. could get processed differently
@@ -344,7 +387,7 @@ Table of Contents
    You may wish to try this in a lab environment first.  If the test
    suceeds, then you may test on your network.
 
-2.  Rate of sending and sampling
+3.  Rate of sending and sampling
 
    Whether you have chosen to send real application data or to craft
    packets, the rate of sending and sampling may create a false
@@ -356,28 +399,30 @@ Table of Contents
    is likely to be counterproductive.
 
    You may wish to send only a few packets or one or two CURL or FTPs at
-   any one test. # Security Considerations
+   any one test.
+
+4.  Security Considerations
 
    This document has no security considerations.
 
-3.  Privacy Considerations
+5.  Privacy Considerations
 
    This document has no privacy considerations.
 
-4.  IANA Considerations
+6.  IANA Considerations
 
    This document has no IANA actions.
 
-5.  References
+7.  References
 
-5.1.  Normative References
+7.1.  Normative References
 
    [RFC8200]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
               (IPv6) Specification", STD 86, RFC 8200,
               DOI 10.17487/RFC8200, July 2017,
               <https://www.rfc-editor.org/rfc/rfc8200>.
 
-5.2.  Informative References
+7.2.  Informative References
 
    [RFC9288]  Gont, F. and W. Liu, "Recommendations on the Filtering of
               IPv6 Packets Containing IPv6 Extension Headers at Transit
